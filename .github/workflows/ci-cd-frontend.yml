@@ -1,0 +1,60 @@
+name: CI/CD Frontend Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: Front-End/package-lock.json
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        working-directory: ./Front-End
+        run: npm ci
+
+      # Step 4: Build application
+      - name: Build application
+        working-directory: ./Front-End
+        run: npm run build
+
+      # Step 5: Authenticate with GCP
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      # Step 6: Set up Google Cloud CLI
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+
+      # Step 7: Configure Docker for Artifact Registry
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      # Step 8: Build Docker image
+      - name: Build Docker image
+        working-directory: ./Front-End
+        run: |
+          docker build -t us-central1-docker.pkg.dev/dev-ops-475910/kavindu/frontend:latest .
+
+      # Step 9: Push Docker image to Artifact Registry
+      - name: Push Docker image
+        run: |
+          docker push us-central1-docker.pkg.dev/dev-ops-475910/kavindu/frontend:latest
+
+

@@ -113,30 +113,30 @@ function ProfilePage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-8 px-4">
-            <div className="max-w-6xl mx-auto">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
-                <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 sm:mb-4">
                         Your Profile
                     </h1>
-                    <p className="text-xl text-gray-600">
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-600">
                         Manage your account and explore your favorite countries
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                     {/* Profile Information Card */}
-                    <div className="lg:col-span-1">
-                        <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8 animate-fade-in-up">
+                    <div className="lg:col-span-1 order-1 lg:order-1">
+                        <div className="bg-white/70 backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-6 lg:p-8 animate-fade-in-up">
                             {/* Profile Header */}
-                            <div className="text-center mb-8">
-                                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-                                    <span className="text-3xl font-bold text-white">
+                            <div className="text-center mb-6 sm:mb-8">
+                                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+                                    <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                                         {user?.username?.charAt(0)?.toUpperCase() || user?.name?.charAt(0)?.toUpperCase() || 'U'}
                                     </span>
                                 </div>
-                                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">
                                     {user?.username || user?.name || 'User'}
                                 </h2>
                                 <p className="text-gray-600">{user?.email}</p>
@@ -315,29 +315,29 @@ function ProfilePage() {
                     </div>
 
                     {/* Favorites Section */}
-                    <div className="lg:col-span-2">
-                        <div className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                            <div className="flex items-center justify-between mb-8">
-                                <h3 className="text-2xl font-bold text-gray-800 flex items-center">
-                                    <svg className="w-6 h-6 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <div className="lg:col-span-2 order-2 lg:order-2">
+                        <div className="bg-white/70 backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20 p-4 sm:p-6 lg:p-8 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 lg:mb-8 gap-3 sm:gap-0">
+                                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 flex items-center">
+                                    <svg className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
                                     Favorite Countries
                                 </h3>
-                                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold self-start sm:self-center">
                                     {favorites?.length || 0} countries
                                 </span>
                             </div>
 
                             {!favorites || favorites.length === 0 ? (
-                                <div className="text-center py-16">
-                                    <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="text-center py-8 sm:py-12 lg:py-16">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                                        <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                         </svg>
                                     </div>
-                                    <h4 className="text-xl font-semibold text-gray-600 mb-2">No favorites yet</h4>
-                                    <p className="text-gray-500 mb-6">Start exploring countries and add them to your favorites!</p>
+                                    <h4 className="text-lg sm:text-xl font-semibold text-gray-600 mb-2">No favorites yet</h4>
+                                    <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Start exploring countries and add them to your favorites!</p>
                                     <button
                                         onClick={() => navigate('/')}
                                         className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-2xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
@@ -349,7 +349,7 @@ function ProfilePage() {
                                     </button>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
                                     {favorites.map((country, index) => (
                                         <CountryCard 
                                             key={country.countryCode || country.cca3 || index} 

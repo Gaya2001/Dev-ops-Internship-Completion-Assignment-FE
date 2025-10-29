@@ -9,11 +9,11 @@ export default defineConfig({
     host: '0.0.0.0',  // Make the server accessible on all network interfaces
     port: 5173,
     allowedHosts: [
-      'localhost', // Add localhost if needed for local development
-      '127.0.0.1',  // Add localhost IP
+      'localhost',
+      '127.0.0.1',
       '44.226.145.213',
       '54.187.200.255'
+    ],
 
-    ]
   }
 })
