@@ -1,33 +1,23 @@
-# Multi-stage build for production
+# Use the official Node.js image as a base
+FROM node:18-alpine
 
-# Stage 1: Build the React app
-FROM node:18-alpine AS builder
-
+# Set the working directory
 WORKDIR /app
 
-# Copy package files
+# Copy the package.json and package-lock.json files
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
-# Copy source code
+# Copy the rest of the application code
 COPY . .
 
-# Build the application
+# Build the Next.js application
 RUN npm run build
 
-# Stage 2: Serve with nginx
-FROM nginx:alpine
+# Expose the port the app runs on
+EXPOSE 3000
 
-# Copy custom nginx config
-COPY nginx-prod.conf /etc/nginx/nginx.conf
 
-# Copy built files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "dev"]
