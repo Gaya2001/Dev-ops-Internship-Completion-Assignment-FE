@@ -20,4 +20,5 @@ spec:
           image: us-central1-docker.pkg.dev/dev-ops-475910/kavindu/frontend:latest
           ports:
             - containerPort: 5173
+            
 
