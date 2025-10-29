@@ -9,7 +9,10 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci
 
-# Copy source code
+# Copy .env file explicitly FIRST (important for Vite build)
+COPY .env .env
+
+# Copy rest of source code
 COPY . .
 
 # Build the application (bakes .env into bundle)
