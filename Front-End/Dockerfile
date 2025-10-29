@@ -3,20 +3,21 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# Build arguments for environment variables
+ARG VITE_API_URL=https://restcountries.com/v3.1
+ARG VITE_SERVER_URL=http://34.134.66.123:5000/api
+
 # Copy package files
 COPY package*.json ./
 
 # Install dependencies
 RUN npm ci
 
-# Copy .env file explicitly FIRST (important for Vite build)
-COPY .env .env
-
-# Copy rest of source code
+# Copy source code
 COPY . .
 
-# Build the application (bakes .env into bundle)
-RUN npm run build
+# Build the application with environment variables
+RUN VITE_API_URL=${VITE_API_URL} VITE_SERVER_URL=${VITE_SERVER_URL} npm run build
 
 # Install serve globally to serve static files
 RUN npm install -g serve
