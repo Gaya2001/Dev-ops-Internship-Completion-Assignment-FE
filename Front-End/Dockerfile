@@ -1,36 +1,25 @@
-# Use the official Node.js image as a base
+# Production build with serve package
 FROM node:18-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files
+# Copy package files
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy the rest of the application code
+# Copy source code
 COPY . .
 
-# Build the Next.js application
+# Build the application (bakes .env into bundle)
 RUN npm run build
 
-# Expose the port the app runs on
+# Install serve globally to serve static files
+RUN npm install -g serve
+
+# Expose port
 EXPOSE 3000
 
-
-# Vite Dev Server for Development/Testing
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm install
-
-COPY . .
-
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
+# Serve the built files (production)
+CMD ["serve", "-s", "dist", "-l", "3000"]
