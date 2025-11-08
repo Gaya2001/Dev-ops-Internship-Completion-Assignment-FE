@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCountries } from '../context/CountryContext';
-import globeVideo from '../assets/7429830-hd_1920_1080_25fps.mp4';
+
+// Video served directly from Cloud Storage (with automatic edge caching)
+const globeVideo = 'https://storage.googleapis.com/kavindu-video-assets/7429830-hd_1920_1080_25fps.mp4';
 
 function HeroSection() {
     const { isAuthenticated } = useAuth();
