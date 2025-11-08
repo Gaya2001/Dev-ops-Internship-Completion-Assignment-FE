@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Build arguments for environment variables
 ARG VITE_API_URL=https://restcountries.com/v3.1
-ARG VITE_SERVER_URL=http://34.134.66.123:5000/api
+ARG VITE_SERVER_URL=https://api.kavinducloudops.tech/api
 
 # Copy package files
 COPY package*.json ./
