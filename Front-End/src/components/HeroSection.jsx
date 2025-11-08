@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useCountries } from '../context/CountryContext';
 
 // Video served directly from Cloud Storage with automatic CDN benefits
-const globeVideo = 'https://storage.googleapis.com/kavindu-video-assets/7429830-hd_1920_1080_25fps.mp4';
+const globeVideo = 'https://storage.googleapis.com/kavindu-video-assets/7429830-hd_1920_1080_25fps%20(1).mp4';
 
 function HeroSection() {
     const { isAuthenticated } = useAuth();
